@@ -141,7 +141,7 @@ void yyerror(const char *msg); // standard error-handling routine
 %type <stmt>            IterStatement
 %type <stmt>            SwitchStatement
 %type <stmt>            CompStatement
-%type <stmt>            SwitchCaseStmt
+//%type <stmt>            SwitchCaseStmt
 %type <stmt>            ExprStmt
 %type <caselist>        CaseList
 %type <casestmt>        CaseStmt
