@@ -65,7 +65,7 @@ void yyerror(const char *msg); // standard error-handling routine
     unsigned int uintConstant;
     
     List<Case *> *caselist;
-    Default * default;
+    Default * def;
 }
 
 
@@ -143,7 +143,7 @@ void yyerror(const char *msg); // standard error-handling routine
 %type <stmt>            SwitchCaseStmt
 %type <stmt>            ExprStmt
 %type <caselist>        CaseList
-%type <default>         DefaultCase
+%type <def>         DefaultCase
 
 //associativity rules
 %nonassoc LOWERELSE
