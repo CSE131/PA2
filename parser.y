@@ -130,6 +130,7 @@ void yyerror(const char *msg); // standard error-handling routine
 %type <expr>            AndExpr
 %type <expr>            OrExpr
 %type <expr>            Expression
+%type <expr>            ForInitExpr
 %type <exprList>        ExprList
 %type <stmt>            Statement
 %type <stmtList>        StatementList
@@ -326,6 +327,9 @@ ExprStmt        : T_Semicolon {$$ = new EmptyExpr();}
                 | Expression T_Semicolon {$$ = $1;}
                 ;
 
+ForInitExpr     : ExprStmt {$$ = $1;}
+                ;
+
 SwitchStatement : T_Switch T_LeftParen Expression T_RightParen T_LeftBrace CaseList DefaultCase
                     T_RightBrace {$$ = new SwitchStmt($3,$6,$7);}
                 ;
@@ -355,7 +359,7 @@ JumpStatement   : T_Break T_Semicolon {$$ = new BreakStmt(@1);}
 IterStatement   : T_While T_LeftParen Expression T_RightParen Statement  {$$  = new WhileStmt($3,$5);}
                 | T_Do Statement T_While T_LeftParen Expression T_RightParen T_Semicolon
                     {$$ = new DoWhileStmt($2,$5);}
-                | T_For T_LeftParen ExprStmt ExprStmt Expression T_RightParen Statement {$$ = new ForStmt($3,$4,$5,$7);}
+                | T_For T_LeftParen ForInitExpr ForInitExpr Expression T_RightParen Statement {$$ = new ForStmt($3,$4,$5,$7);}
                 ;
 
 
