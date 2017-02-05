@@ -272,7 +272,22 @@ AssignmentOp    : T_Equal {$$ = new Operator(@1,"=");}
                 | T_SubAssign {$$ = new Operator(@1,"-=");}
                 ;
 
-Function_Iden   : T_Identifier {$$ = new Identifier(@1,$1);}
+Function_Iden   : T_Vec2 {$$ = new Identifier (@1, "vec2");}
+                | T_Vec3 {$$ = new Identifier (@1, "vec3");}
+                | T_Vec4 {$$ = new Identifier (@1, "vec4");}
+                | T_Bvec2 {$$ = new Identifier (@1, "bvec2");}
+                | T_Bvec3 {$$ = new Identifier (@1, "bvec3");}
+                | T_Bvec4 {$$ = new Identifier (@1, "bvec4");}
+                | T_Ivec2 {$$ = new Identifier (@1, "ivec2");}
+                | T_Ivec3 {$$ = new Identifier (@1, "ivec3");}
+                | T_Ivec4 {$$ = new Identifier (@1, "ivec4");}
+                | T_Uvec2 {$$ = new Identifier (@1, "uvec2");}
+                | T_Uvec3 {$$ = new Identifier (@1, "uvec3");}
+                | T_Uvec4 {$$ = new Identifier (@1, "uvec4");}
+                | T_Mat2 {$$ = new Identifier (@1, "mat2");}
+                | T_Mat3 {$$ = new Identifier (@1, "mat3");}
+                | T_Mat4 {$$ = new Identifier (@1, "mat4");}
+                | T_Identifier {$$ = new Identifier(@1,$1);}
                 ;
 
 TypeSpecifier   : T_Void {$$ = Type::voidType;}
