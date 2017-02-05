@@ -1,0 +1,11 @@
+
+   Program: 
+  1   VarDecl: 
+         Type: mat2
+  1      Identifier: m1
+  2   VarDecl: 
+         Type: mat3
+  2      Identifier: m2
+  3   VarDecl: 
+         Type: mat4
+  3      Identifier: m3
