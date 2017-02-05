@@ -143,7 +143,7 @@ void yyerror(const char *msg); // standard error-handling routine
 %type <stmt>            SwitchStatement
 %type <stmt>            CompStatement
 //%type <stmt>            SwitchCaseStmt
-%type <stmt>            ExprStmt
+%type <expr>            ExprStmt
 %type <caselist>        CaseList
 %type <casestmt>        CaseStmt
 %type <def>             DefaultCase
