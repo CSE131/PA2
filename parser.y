@@ -113,6 +113,8 @@ void yyerror(const char *msg); // standard error-handling routine
 %type <decl>            Decl
 %type <decl>            ExtDecl
 %type <vardecl>         Param_Decl
+%type <vardecl>         VarInitDecl
+%type <varList>         VarDeclList
 %type <varList>         Param_Decl_List
 %type <type>            TypeSpecifier;
 %type <typeQualifier>   Type_Qualifier
@@ -304,15 +306,21 @@ SimpleStatement : ExprStmt {$$ = $1;}
                 //| SwitchCaseStmt  {$$= $1;}
                 | IterStatement {$$ = $1;}
                 | JumpStatement {$$ = $1;}
-                | Param_Decl {$$ = $1;}
                 ;
 
 Statement       : CompStatement {$$ = $1;}
                 | SimpleStatement {$$ = $1;}
                 ;
 
-CompStatement    : T_LeftBrace T_RightBrace {$$  = new StmtBlock(new List<VarDecl*>(),new List<Stmt*>);}
-                | T_LeftBrace  StatementList T_RightBrace {$$ = new StmtBlock(new List<VarDecl*>(),$2);}
+CompStatement   : T_LeftBrace VarDeclList T_RightBrace {$$  = new StmtBlock($2,new List<Stmt*>());}
+                | T_LeftBrace VarDeclList StatementList T_RightBrace {$$ = new StmtBlock($2,$3);}
+                ;
+
+VarInitDecl     : Param_Decl T_Semicolon {$$ = $1;}
+                ;
+
+VarDeclList     : VarDeclList VarInitDecl {($$ = $1)-> Append($2);}
+                | {$$ = new List<VarDecl* >();}
                 ;
 
 StatementList   : Statement {($$ = new List<Stmt *>)->Append($1);}
