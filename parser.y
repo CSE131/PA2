@@ -365,7 +365,7 @@ IterStatement   : T_While T_LeftParen Expression T_RightParen Statement  {$$  = 
 /*---------------------------------------------Declarations---------------------------------------------*/
 
 Type_Qualifier  : T_Const {$$ = TypeQualifier::constTypeQualifier;}
-                | T_In {$$ = TypeQualifier::intTypeQualifier;}
+                | T_In {$$ = TypeQualifier::inTypeQualifier;}
                 | T_Out {$$ = TypeQualifier::outTypeQualifier;}
                 | T_Uniform {$$ = TypeQualifier::uniformTypeQualifier;}
                 ;
@@ -378,7 +378,7 @@ Param_Decl      : TypeSpecifier T_Identifier {$$ = new VarDecl(new Identifier(@2
                 | TypeSpecifier T_Identifier  T_LeftBracket T_IntConstant T_RightBracket
                     {$$ = new VarDecl(new Identifier(@2,$2),new ArrayType(@1,$1));}
                 | Type_Qualifier TypeSpecifier T_Identifier T_LeftBracket T_IntConstant T_RightBracket
-                    {$$ = new VarDecl(new Identifier(@3,$3), new Arraytype(@2,$2),$1);}
+                    {$$ = new VarDecl(new Identifier(@3,$3), new ArrayType(@2,$2),$1);}
 
                 | TypeSpecifier T_Identifier T_Equal Expression {$$ = new VarDecl(new Identifier(@2,$2),$1,$4);}
                 | Type_Qualifier TypeSpecifier T_Identifier T_Equal Expression
