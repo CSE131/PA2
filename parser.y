@@ -184,7 +184,7 @@ DeclList        : DeclList Decl { ($$=$1)->Append($2); }
 Decl            : Function_Decl CompStatement
                     {
                         $$ = $1;
-                        $1->SetFunctionBody($2);
+                        if($2) $1->SetFunctionBody($2);
                     }
                 | ExtDecl {$$ = $1;}
                 ;
