@@ -304,6 +304,7 @@ SimpleStatement : ExprStmt {$$ = $1;}
                 //| SwitchCaseStmt  {$$= $1;}
                 | IterStatement {$$ = $1;}
                 | JumpStatement {$$ = $1;}
+                | Param_Decl {$$ = $1;}
                 ;
 
 Statement       : CompStatement {$$ = $1;}
