@@ -63,6 +63,9 @@ void yyerror(const char *msg); // standard error-handling routine
     Identifier * fnidentifier;
     Operator * opr;
     unsigned int uintConstant;
+    
+    List<Case *> *caselist;
+    Default * default;
 }
 
 
@@ -139,6 +142,8 @@ void yyerror(const char *msg); // standard error-handling routine
 %type <stmt>            CompStatement
 %type <stmt>            SwitchCaseStmt
 %type <stmt>            ExprStmt
+%type <caselist>        CaseList
+%type <default>         DefaultCase
 
 //associativity rules
 %nonassoc LOWERELSE
@@ -271,7 +276,7 @@ TypeSpecifier   : T_Void {$$ = Type::voidType;}
                 | T_Bool {$$ = Type::boolType;}
                 | T_Uint {$$ = Type::uintType;}
                 | T_Mat2 {$$ = Type::mat2Type;}
-                | T_Mat3 {$$ = Type::mat3type;}
+                | T_Mat3 {$$ = Type::mat3Type;}
                 | T_Mat4 {$$ = Type::mat4Type;}
                 | T_Uvec2 {$$ = Type::uvec2Type;}
                 | T_Uvec3 {$$ = Type::uvec3Type;}
@@ -320,8 +325,16 @@ ExprStmt        : T_Semicolon {$$ = new EmptyExpr();}
                 | Expression T_Semicolon {$$ = $1;}
                 ;
 
-SwitchStatement  : T_Switch T_LeftParen Expression T_RightParen T_LeftBrace StatementList T_RightBrace
-                    {$$ = new SwitchStmt($3,$6,NULL);}
+SwitchStatement : T_Switch T_LeftParen Expression T_RightParen T_LeftBrace CaseList DefaultCase
+                    T_RightBrace {$$ = new SwitchStmt($3,$6,$7);}
+                ;
+
+CaseList        : SwitchCaseStmt {($$ = new List<Case*>)-> Append($1);}
+                | CaseList SwitchCaseStmt {($$ = $1)-> Append($2);}
+                ;
+
+DefaultCase     : T_Default T_Colon StatementList   {$$= new Default($3);}
+                | {$$ = NULL;} //no default case
                 ;
 
 JumpStatement   : T_Break T_Semicolon {$$ = new BreakStmt(@1);}
@@ -329,8 +342,8 @@ JumpStatement   : T_Break T_Semicolon {$$ = new BreakStmt(@1);}
                 | T_Return Expression T_Semicolon {$$= new ReturnStmt(@1,$2);}
                 ;
 
-SwitchCaseStmt  : T_Default T_Colon Statement   {$$= new Default($3);}
-                | T_Case Expression T_Colon Statement  {$$ = new Case($2,$4);}
+SwitchCaseStmt  : T_Case Expression T_Colon {$$ = new Case($2,new List<Stmt *>);}
+                | T_Case Expression T_Colon StatementList  {$$ = new Case($2,$4);}
                 ;
 
 IterStatement   : T_While T_LeftParen Expression T_RightParen Statement  {$$  = new WhileStmt($3,$5);}
