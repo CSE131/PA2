@@ -65,6 +65,7 @@ void yyerror(const char *msg); // standard error-handling routine
     unsigned int uintConstant;
     
     List<Case *> *caselist;
+    Case * casestmt;
     Default * def;
 }
 
@@ -143,7 +144,8 @@ void yyerror(const char *msg); // standard error-handling routine
 %type <stmt>            SwitchCaseStmt
 %type <stmt>            ExprStmt
 %type <caselist>        CaseList
-%type <def>         DefaultCase
+%type <casestmt>        CaseStmt
+%type <def>             DefaultCase
 
 //associativity rules
 %nonassoc LOWERELSE
@@ -257,7 +259,7 @@ OrExpr          : AndExpr {$$ = $1;}
 
 Expression      : OrExpr {$$ = $1;}
                 | UnaryExpr AssignmentOp Expression {$$ = new AssignExpr($1,$2,$3);}
-                | OrExpr T_Question Expression T_Colon Expression {$$ = new ConditionalExpr($1,$3,$5);}
+                | OrExpr T_Question Expression T_Colon Expression {$$ = new SelectionExpr($1,$3,$5);}
                 ;
 
 AssignmentOp    : T_Equal {$$ = new Operator(@1,"=");}
@@ -329,8 +331,11 @@ SwitchStatement : T_Switch T_LeftParen Expression T_RightParen T_LeftBrace CaseL
                     T_RightBrace {$$ = new SwitchStmt($3,$6,$7);}
                 ;
 
-CaseList        : SwitchCaseStmt {($$ = new List<Case*>)-> Append($1);}
-                | CaseList SwitchCaseStmt {($$ = $1)-> Append($2);}
+CaseStmt        : SwitchCaseStmt {$$ = $1;}
+                ;
+
+CaseList        : CaseStmt {($$ = new List<Case*>)-> Append($1);}
+                | CaseList CaseStmt {($$ = $1)-> Append($2);}
                 ;
 
 DefaultCase     : T_Default T_Colon StatementList   {$$= new Default($3);}
@@ -344,6 +349,7 @@ JumpStatement   : T_Break T_Semicolon {$$ = new BreakStmt(@1);}
 
 SwitchCaseStmt  : T_Case Expression T_Colon {$$ = new Case($2,new List<Stmt *>);}
                 | T_Case Expression T_Colon StatementList  {$$ = new Case($2,$4);}
+                | DefaultCase {$$ = $1;}
                 ;
 
 IterStatement   : T_While T_LeftParen Expression T_RightParen Statement  {$$  = new WhileStmt($3,$5);}
