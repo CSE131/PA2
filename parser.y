@@ -300,7 +300,7 @@ TypeSpecifier   : T_Void {$$ = Type::voidType;}
 SimpleStatement : ExprStmt {$$ = $1;}
                 | SelectionStmt {$$ = $1;}
                 | SwitchStatement {$$= $1;}
-                | SwitchCaseStmt  {$$= $1;}
+                //| SwitchCaseStmt  {$$= $1;}
                 | IterStatement {$$ = $1;}
                 | JumpStatement {$$ = $1;}
                 | Param_Decl  T_Semicolon {$$  = new DeclStmt($1);}
@@ -331,7 +331,8 @@ SwitchStatement : T_Switch T_LeftParen Expression T_RightParen T_LeftBrace CaseL
                     T_RightBrace {$$ = new SwitchStmt($3,$6,$7);}
                 ;
 
-CaseStmt        : SwitchCaseStmt {$$ = $1;}
+CaseStmt        : T_Case Expression T_Colon {$$ = new Case($2,new List<Stmt *>);}
+                | T_Case Expression T_Colon StatementList  {$$ = new Case($2,$4);}
                 ;
 
 CaseList        : CaseStmt {($$ = new List<Case*>)-> Append($1);}
@@ -347,10 +348,10 @@ JumpStatement   : T_Break T_Semicolon {$$ = new BreakStmt(@1);}
                 | T_Return Expression T_Semicolon {$$= new ReturnStmt(@1,$2);}
                 ;
 
-SwitchCaseStmt  : T_Case Expression T_Colon {$$ = new Case($2,new List<Stmt *>);}
-                | T_Case Expression T_Colon StatementList  {$$ = new Case($2,$4);}
-                | DefaultCase {$$ = $1;}
-                ;
+//SwitchCaseStmt  : T_Case Expression T_Colon {$$ = new Case($2,new List<Stmt *>);}
+//                | T_Case Expression T_Colon StatementList  {$$ = new Case($2,$4);}
+//                | DefaultCase {$$ = $1;}
+//                ;
 
 IterStatement   : T_While T_LeftParen Expression T_RightParen Statement  {$$  = new WhileStmt($3,$5);}
                 | T_Do Statement T_While T_LeftParen Expression T_RightParen T_Semicolon
