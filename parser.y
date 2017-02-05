@@ -303,7 +303,7 @@ Statement       : CompStatment {$$ = $1;}
                 | SimpleStatement {$$ = $1;}
                 ;
 
-CompStatment    : T_LeftBrace T_RightBrace {$$  = new StmtBlock(new List<VarDecl*>(),new List<Stmt*>);}
+CompStatement    : T_LeftBrace T_RightBrace {$$  = new StmtBlock(new List<VarDecl*>(),new List<Stmt*>);}
                 | T_LeftBrace  StatementList T_RightBrace {$$ = new StmtBlock(new List<VarDecl*>(),$2);}
                 ;
 
@@ -320,12 +320,12 @@ ExprStmt        : T_Semicolon {$$ = new EmptyExpr();}
                 | Expression T_Semicolon {$$ = $1;}
                 ;
 
-SwitchStatment  : T_Switch T_LeftParen Expression T_RightParen T_LeftBrace StatmentList T_RightBrace
+SwitchStatement  : T_Switch T_LeftParen Expression T_RightParen T_LeftBrace StatementList T_RightBrace
                     {$$ = new SwitchStmt($3,$6,NULL);}
                 ;
 
-JumpStatement   : T_Break T_SemiColon {$$ = new BreakStmt(@1);}
-                | T_Return T_SemiColon {$$ = new ReturnStmt(@1,NULL);}
+JumpStatement   : T_Break T_Semicolon {$$ = new BreakStmt(@1);}
+                | T_Return T_Semicolon {$$ = new ReturnStmt(@1,NULL);}
                 | T_Return Expression T_Semicolon {$$= new ReturnStmt(@1,$2);}
                 ;
 
@@ -361,7 +361,7 @@ Param_Decl      : TypeSpecifier T_Identifier {$$ = new VarDecl(new Identifier(@2
                     {$$ = new VarDecl(new Identifier(@3,$3), new Arraytype(@2,$2),$1);}
 
                 | TypeSpecifier T_Identifier T_Equal Expression {$$ = new VarDecl(new Identifier(@2,$2),$1,$4);}
-                | TypeQualifier TypeSpecifier T_Identifier T_Equal Expression
+                | Type_Qualifier TypeSpecifier T_Identifier T_Equal Expression
                     {$$ = new VarDecl(new Identifier(@3,$3),$2,$1,$5);}
                 ;
 
