@@ -46,19 +46,19 @@ void yyerror(const char *msg); // standard error-handling routine
     Decl *decl;
     List<Decl*> *declList;
     
-    VarDecl * vardecl;
-    List<VarDecl *> varList;
+    VarDecl* vardecl;
+    List<VarDecl*> *varList;
     
     Type *type;
-    TypeQualifier *typeQualifier;
+    TypeQualifier* typeQualifier;
     
     FnDecl *functionDecl;
     
     Expr * expr;
-    List<Expr *> exprList;
+    List<Expr *> *exprList;
     
     Stmt *stmt;
-    List<Stmt *> stmtList;
+    List<Stmt *> *stmtList;
     
     Identifier * fnidentifier;
     Operator * operator;
