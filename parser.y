@@ -226,8 +226,8 @@ FnCallExpr      : FnCallParams T_RightParen   {$$ = $1;}
 UnaryExpr       : PostfixExpr         {$$ = $1;}
                 | T_Inc UnaryExpr     {$$ = new ArithmeticExpr(new Operator(@1,"++"),$2);}
                 | T_Dec UnaryExpr     {$$ = new ArithmeticExpr(new Operator(@1,"--"),$2);}
-                | T_Dash UnaryExpr    {$$ = new ArithmeticExpr(new Operator(@1,"-"),$2);}
-                | T_Plus UnaryExpr    {$$ = new ArithmeticExpr(new Operator(@1,"+"),$2);}
+                | T_Dash UnaryExpr    {$$ = new ArithmeticExpr(new IntConstant(@1, -1), new Operator(@1,"*"),$2);}
+                | T_Plus UnaryExpr    {$$ = new ArithmeticExpr(new IntConstant(@1, +1), new Operator(@1,"*"),$2);}
                 ;
 
 AdditiveExpr    : MultiplyExpr {$$ = $1;}
