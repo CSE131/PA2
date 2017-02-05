@@ -303,7 +303,6 @@ SimpleStatement : ExprStmt {$$ = $1;}
                 //| SwitchCaseStmt  {$$= $1;}
                 | IterStatement {$$ = $1;}
                 | JumpStatement {$$ = $1;}
-                | Param_Decl  T_Semicolon {$$  = new DeclStmt($1);}
                 ;
 
 Statement       : CompStatement {$$ = $1;}
