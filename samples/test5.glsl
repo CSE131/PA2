@@ -13,5 +13,5 @@ int main(int x) {
                 x = x + (++foo())-- - test[10];
         }   
     }
-    return;
+    return true && false;
 }
