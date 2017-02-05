@@ -372,8 +372,6 @@ DefaultCase     : T_Default T_Colon StatementList   {$$= new Default($3);}
 
 JumpStatement   : T_Break T_Semicolon {$$ = new BreakStmt(@1);}
                 | T_Return ExprStmt {$$ = new ReturnStmt(@1,$2);}
-//                | T_Return T_Semicolon {$$ = new ReturnStmt(@1,NULL);}
-//                | T_Return Expression T_Semicolon {$$= new ReturnStmt(@1,$2);}
                 ;
 
 //SwitchCaseStmt  : T_Case Expression T_Colon {$$ = new Case($2,new List<Stmt *>);}
