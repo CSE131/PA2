@@ -173,7 +173,7 @@ DeclList        : DeclList Decl { ($$=$1)->Append($2); }
                 | Decl  { ($$ = new List<Decl*>)->Append($1); }
                 ;
 
-Decl            : Function_Decl CompStatment
+Decl            : Function_Decl CompStatement
                     {
                         $$ = $1;
                         if($2) $$->SetFunctionBody($2);
@@ -193,8 +193,8 @@ PrimaryExpr     : T_Identifier        {$$ = new VarExpr(@1, new Identifier(@1, $
 PostfixExpr     : PrimaryExpr         {$$ = $1;}
                 | PostfixExpr T_LeftBracket Expression T_RightBracket {$$ = new ArrayAccess(@1,$1,$3);}
                 | PostfixExpr T_Dot T_FieldSelection  {$$ = new FieldAccess($1, new Identifier(@3, $3);}
-                | PostfixExpr T_Inc   {$$ = new PostfixExpr($1, new Operator(@2,$2));}
-                | PostfixExpr T_Dec   {$$ = new PostfixExpr($1, new Operator(@2,$2));}
+                | PostfixExpr T_Inc   {$$ = new PostfixExpr($1, new Operator(@2,"++"));}
+                | PostfixExpr T_Dec   {$$ = new PostfixExpr($1, new Operator(@2,"--");}
                 | FnCallExpr          {$$ = $1;}
                 ;
 
