@@ -61,7 +61,7 @@ void yyerror(const char *msg); // standard error-handling routine
     List<Stmt *> *stmtList;
     
     Identifier * fnidentifier;
-    Operator * operator;
+    Operator * opr;
     unsigned int uintConstant;
 }
 
@@ -129,7 +129,7 @@ void yyerror(const char *msg); // standard error-handling routine
 %type <exprList>        ExprList
 %type <stmt>            Statement
 %type <stmtList>        StatementList
-%type <operator>        AssignmentOp
+%type <opr>             AssignmentOp
 %type <fnidentifier>    Function_Iden
 %type <stmt>            SimpleStatement
 %type <stmt>            SelectionStmt
@@ -247,7 +247,7 @@ AndExpr         : EqualExpr {$$ = $1;}
                 ;
 
 OrExpr          : AndExpr {$$ = $1;}
-                | OrExpr T_Or AndExpr {$$ = new LogicalExpr($1, New Operator(@2,"||"),$3);}
+                | OrExpr T_Or AndExpr {$$ = new LogicalExpr($1, new Operator(@2,"||"),$3);}
                 ;
 
 Expression      : OrExpr {$$ = $1;}
