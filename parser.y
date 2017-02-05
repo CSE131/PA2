@@ -214,40 +214,40 @@ FnCallExpr      : FnCallParams T_RightParen   {$$ = $1;}
                 ;
 
 UnaryExpr       : PostfixExpr         {$$ = $1;}
-                | T_Inc UnaryExpr     {$$ = new ArithmeticExpr(new Operator(@1,$1),$2);}
-                | T_Dec UnaryExpr     {$$ = new ArithmeticExpr(new Operator(@1,$1),$2);}
-                | T_Dash UnaryExpr    {$$ = new ArithmeticExpr(new Operator(@1,$1),$2);}
-                | T_Plus UnaryExpr    {$$ = new ArithmeticExpr(new Operator(@1,$1),$2);}
+                | T_Inc UnaryExpr     {$$ = new ArithmeticExpr(new Operator(@1,"++"),$2);}
+                | T_Dec UnaryExpr     {$$ = new ArithmeticExpr(new Operator(@1,"--"),$2);}
+                | T_Dash UnaryExpr    {$$ = new ArithmeticExpr(new Operator(@1,"-"),$2);}
+                | T_Plus UnaryExpr    {$$ = new ArithmeticExpr(new Operator(@1,"+"),$2);}
                 ;
 
 AdditiveExpr    : MultiplyExpr {$$ = $1;}
-                | AdditiveExpr T_Plus MultiplyExpr {$$ = new ArithmeticExpr($1, new Operator(@2,$2),$3);}
-                | AdditiveExpr T_Dash MultiplyExpr {$$ = new ArithmeticExpr($1, new Operator(@2,$2),$3);}
+                | AdditiveExpr T_Plus MultiplyExpr {$$ = new ArithmeticExpr($1, new Operator(@2,"+"),$3);}
+                | AdditiveExpr T_Dash MultiplyExpr {$$ = new ArithmeticExpr($1, new Operator(@2,"-"),$3);}
                 ;
 
 MultiplyExpr    : UnaryExpr     {$$ = $1;}
-                | MultiplyExpr T_Slash UnaryExpr {$$ = new ArithmeticExpr($1, new Operator(@2,$2),$3);}
-                | MultiplyExpr T_Star UnaryExpr {$$ = new ArithmeticExpr($1, new Operator(@2,$2),$3);}
+                | MultiplyExpr T_Slash UnaryExpr {$$ = new ArithmeticExpr($1, new Operator(@2,"/"),$3);}
+                | MultiplyExpr T_Star UnaryExpr {$$ = new ArithmeticExpr($1, new Operator(@2,"*"),$3);}
                 ;
 
 RelationalExpr  : AdditiveExpr {$$ = $1;}
-                | RelationalExpr T_LeftAngle AdditiveExpr {$$ = new RelationalExpr($1,new Operator(@2,$2),$3);}
-                | RelationalExpr T_RightAngle AdditiveExpr {$$ = new RelationalExpr($1,new Operator(@2,$2),$3);}
-                | RelationalExpr T_LessEqual AdditiveExpr {$$ = new RelationalExpr($1,new Operator(@2,$2),$3);}
-                | RelationalExpr T_GreaterEqual AdditiveExpr {$$ = new RelationalExpr($1,new Operator(@2,$2),$3);}
+                | RelationalExpr T_LeftAngle AdditiveExpr {$$ = new RelationalExpr($1,new Operator(@2,"<"),$3);}
+                | RelationalExpr T_RightAngle AdditiveExpr {$$ = new RelationalExpr($1,new Operator(@2,">"),$3);}
+                | RelationalExpr T_LessEqual AdditiveExpr {$$ = new RelationalExpr($1,new Operator(@2,"<="),$3);}
+                | RelationalExpr T_GreaterEqual AdditiveExpr {$$ = new RelationalExpr($1,new Operator(@2,">="),$3);}
                 ;
 
 EqualExpr       : RelationalExpr {$$ = $1;}
-                | EqualExpr T_EQ RelationalExpr {$$ = new EqualityExpr($1, new Operator(@2,$2),$3);}
-                | EqualExpr T_NE RelationalExpr {$$ = new EqualityExpr($1, new Operator(@2,$2),$3);}
+                | EqualExpr T_EQ RelationalExpr {$$ = new EqualityExpr($1, new Operator(@2,"=="),$3);}
+                | EqualExpr T_NE RelationalExpr {$$ = new EqualityExpr($1, new Operator(@2,"!="),$3);}
                 ;
 
 AndExpr         : EqualExpr {$$ = $1;}
-                | AndExpr T_And EqualExpr {$$ = new LogicalExpr($1, new Operator(@2,$2),$3);}
+                | AndExpr T_And EqualExpr {$$ = new LogicalExpr($1, new Operator(@2,"&&"),$3);}
                 ;
 
 OrExpr          : AndExpr {$$ = $1;}
-                | OrExpr T_Or AndExpr {$$ = new LogicalExpr($1, New Operator(@2,$2),$3);}
+                | OrExpr T_Or AndExpr {$$ = new LogicalExpr($1, New Operator(@2,"||"),$3);}
                 ;
 
 Expression      : OrExpr {$$ = $1;}
