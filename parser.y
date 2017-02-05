@@ -232,7 +232,7 @@ MultiplyExpr    : UnaryExpr     {$$ = $1;}
 
 RelationalExpr  : AdditiveExpr {$$ = $1;}
                 | RelationalExpr T_LeftAngle AdditiveExpr {$$ = new RelationalExpr($1,new Operator(@2,$2),$3);}
-                | RelationalExpr T_RightAngle AdditiveExpr {$$ = new RelationalExpr($1,new Operator(@2,$2),$3);},
+                | RelationalExpr T_RightAngle AdditiveExpr {$$ = new RelationalExpr($1,new Operator(@2,$2),$3);}
                 | RelationalExpr T_LessEqual AdditiveExpr {$$ = new RelationalExpr($1,new Operator(@2,$2),$3);}
                 | RelationalExpr T_GreaterEqual AdditiveExpr {$$ = new RelationalExpr($1,new Operator(@2,$2),$3);}
                 ;
@@ -278,13 +278,13 @@ TypeSpecifier   : T_Void {$$ = Type::voidType;}
                 | T_Uvec4 {$$ = Type::uvec4Type;}
                 | T_Ivec2 {$$ = Type::ivec2Type;}
                 | T_Ivec3 {$$ = Type::ivec3Type;}
-                | T_Ivec4 = {$$ = Type::ivec4Type;}
-                | T_Bvec2 = {$$ = Type::bvec2Type;}
-                | T_Bvec3 = {$$ = Type::bvec3Type;}
-                | T_Bvec4 = {$$ = Type::bvec4Type;}
-                | T_Vec2 = {$$ = Type::vec2Type;}
-                | T_Vec3 = {$$ = Type::vec3Type;}
-                | T_Vec4 = {$$ = Type::vec4Type;}
+                | T_Ivec4 {$$ = Type::ivec4Type;}
+                | T_Bvec2 {$$ = Type::bvec2Type;}
+                | T_Bvec3 {$$ = Type::bvec3Type;}
+                | T_Bvec4 {$$ = Type::bvec4Type;}
+                | T_Vec2 {$$ = Type::vec2Type;}
+                | T_Vec3 {$$ = Type::vec3Type;}
+                | T_Vec4 {$$ = Type::vec4Type;}
                 ;
 
 /*--------------------------------------------End of Expressions----------------------------------------*/
