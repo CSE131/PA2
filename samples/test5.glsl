@@ -1,4 +1,4 @@
-main(int x) {
+int main(int x) {
     int x = 0;
     int x[10];
     (x+x) = vec4(0.55);
@@ -14,3 +14,4 @@ main(int x) {
         }   
     }
     return;
+}
