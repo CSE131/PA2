@@ -299,7 +299,7 @@ SimpleStatement : ExprStmt {$$ = $1;}
                 | Param_Decl  T_Semicolon {$$  = new DeclStmt($1);}
                 ;
 
-Statement       : CompStatment {$$ = $1;}
+Statement       : CompStatement {$$ = $1;}
                 | SimpleStatement {$$ = $1;}
                 ;
 
