@@ -1,1 +1,18 @@
-My strategy in writing the parser was that I went through all the highlighted terms in the GLSL Handbook and created a tree out of them. The tree mapped  all of the nonterminals that were in a parent-child fashion so that it was easy for me to know which rules I could combine in order to eliminate shift-reduce or reduce-reduce errors. After I created the tree of all rules, I combined the common non-terminals and highlighted the ones that I actually needed to code. I then went through each rule for statement, expressions, and declarations and idenitified their type, looked in the appropriate ast file to find the class name and then wrote down the types in the %union field. After I had written down the type for the union, I created non-terminal types using %type and used that to write the rule for the non-terminal type. I had to go back and forth in determining which class needed to be initialized for every rule because it was hard to find that information. I divided my parser.y file in three sections Statements, Expressions, and Declarations. I also made all actions in one line and aligned all the "|"s in order to not make the file unreadable and hard to maintain. In this project, we learned how to write the syntax analyzer that would take the input from lexical analyizer and then using the rules try to match the syntax structure that is defined. This stage of the process doesn't care about whether a statement actually makes sense--that is semantic analysis. We only cared in this project whether the syntax of file or code was actually correct.
+My strategy in writing the parser was that I went through all the highlighted terms in the
+GLSL Handbook and created a tree out of them. The tree mapped  all of the nonterminals
+that were in a parent-child fashion so that it was easy for me to know which rules I could
+combine in order to eliminate shift-reduce or reduce-reduce errors. After I created the 
+tree of all rules, I combined the common non-terminals and highlighted the ones that I 
+actually needed to code. I then went through each rule for statement, expressions, and 
+declarations and idenitified their type, looked in the appropriate ast file to find the 
+class name and then wrote down the types in the %union field. After I had written down the
+type for the union, I created non-terminal types using %type and used that to write the 
+rule for the non-terminal type. I had to go back and forth in determining which class 
+needed to be initialized for every rule because it was hard to find that information. I 
+divided my parser.y file in three sections Statements, Expressions, and Declarations. I 
+also made all actions in one line and aligned all the "|"s in order to not make the file 
+unreadable and hard to maintain. In this project, we learned how to write the syntax 
+analyzer that would take the input from lexical analyizer and then using the rules try to 
+match the syntax structure that is defined. This stage of the process doesn't care about 
+whether a statement actually makes sense--that is semantic analysis. We only cared in this 
+project whether the syntax of file or code was actually correct.
