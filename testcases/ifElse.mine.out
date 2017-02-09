@@ -1,0 +1,21 @@
+
+   Program: 
+  1   FnDecl: 
+         (return type) Type: void
+  1      Identifier: main
+         (body) StmtBlock: 
+            IfStmt: 
+  2            (test) VarExpr: 
+  2               Identifier: a
+               (then) StmtBlock: 
+  3               AssignExpr: 
+  3                  VarExpr: 
+  3                     Identifier: b
+  3                  Operator: =
+  3                  IntConstant: 5
+               (else) StmtBlock: 
+  6               AssignExpr: 
+  6                  VarExpr: 
+  6                     Identifier: b
+  6                  Operator: =
+  6                  IntConstant: 1
