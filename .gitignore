@@ -1,3 +1,4 @@
+*.mine.out
 *.o
 *.swp
 *.pyc
