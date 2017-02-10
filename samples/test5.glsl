@@ -1,5 +1,5 @@
 int main(int x) {
-    int x = -1; 
+    int x = -1;
     int x[10];
     (x+x) = vec4(0.55);
     1 < 2 ? 1 : 2 = x;
@@ -15,7 +15,7 @@ int main(int x) {
                 y = 10 && k;
             case 2:
                 x = x + (++foo())-- - test[10];
-        }   
-    }   
+        }
+    }
     return;
 }
