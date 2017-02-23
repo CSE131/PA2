@@ -1,0 +1,95 @@
+
+   Program: 
+  1   FnDecl: 
+         (return type) Type: void
+  1      Identifier: main
+         (body) StmtBlock: 
+  2         VarDecl: 
+               Type: vec2
+  2            Identifier: v2
+  3         VarDecl: 
+               Type: vec3
+  3            Identifier: v3
+  4         VarDecl: 
+               Type: vec4
+  4            Identifier: v4
+  6         FieldAccess: 
+  6            VarExpr: 
+  6               Identifier: v2
+  6            Identifier: x
+  7         FieldAccess: 
+  7            VarExpr: 
+  7               Identifier: v2
+  7            Identifier: y
+  8         FieldAccess: 
+  8            VarExpr: 
+  8               Identifier: v2
+  8            Identifier: yx
+  9         FieldAccess: 
+  9            VarExpr: 
+  9               Identifier: v2
+  9            Identifier: xx
+ 11         FieldAccess: 
+ 11            VarExpr: 
+ 11               Identifier: v3
+ 11            Identifier: z
+ 12         FieldAccess: 
+ 12            VarExpr: 
+ 12               Identifier: v3
+ 12            Identifier: zy
+ 13         FieldAccess: 
+ 13            VarExpr: 
+ 13               Identifier: v3
+ 13            Identifier: zxy
+ 14         FieldAccess: 
+ 14            VarExpr: 
+ 14               Identifier: v3
+ 14            Identifier: yyy
+ 16         FieldAccess: 
+ 16            VarExpr: 
+ 16               Identifier: v4
+ 16            Identifier: w
+ 17         FieldAccess: 
+ 17            VarExpr: 
+ 17               Identifier: v4
+ 17            Identifier: xw
+ 18         FieldAccess: 
+ 18            VarExpr: 
+ 18               Identifier: v4
+ 18            Identifier: yxw
+ 19         FieldAccess: 
+ 19            VarExpr: 
+ 19               Identifier: v4
+ 19            Identifier: yxxw
+ 21         FieldAccess: 
+ 21            VarExpr: 
+ 21               Identifier: v2
+ 21            Identifier: xxy
+ 22         FieldAccess: 
+ 22            VarExpr: 
+ 22               Identifier: v2
+ 22            Identifier: ax
+ 24         FieldAccess: 
+ 24            VarExpr: 
+ 24               Identifier: v3
+ 24            Identifier: d
+ 25         FieldAccess: 
+ 25            VarExpr: 
+ 25               Identifier: v3
+ 25            Identifier: kxk
+ 26         FieldAccess: 
+ 26            VarExpr: 
+ 26               Identifier: v3
+ 26            Identifier: xxxx
+ 28         FieldAccess: 
+ 28            VarExpr: 
+ 28               Identifier: v4
+ 28            Identifier: wwwd
+ 29         FieldAccess: 
+ 29            VarExpr: 
+ 29               Identifier: v4
+ 29            Identifier: sax
+ 30         FieldAccess: 
+ 30            VarExpr: 
+ 30               Identifier: v4
+ 30            Identifier: xyzww

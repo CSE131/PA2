@@ -1,0 +1,16 @@
+
+   Program: 
+  1   FnDecl: 
+         (return type) Type: int
+         (return type qualifier) TypeQualifier: in
+  1      Identifier: bar
+         (body) StmtBlock: 
+  2         ReturnStmt: 
+  2            IntConstant: 1
+  5   FnDecl: 
+         (return type) Type: int
+         (return type qualifier) TypeQualifier: out
+  5      Identifier: baz
+         (body) StmtBlock: 
+  6         ReturnStmt: 
+  6            IntConstant: 1

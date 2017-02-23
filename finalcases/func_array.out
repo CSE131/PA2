@@ -1,0 +1,14 @@
+
+   Program: 
+  1   FnDecl: 
+  1      (return type) ArrayType: 
+            Type: int
+  1      Identifier: func_return_arr
+         (body) StmtBlock: 
+  3         VarDecl: 
+  3            ArrayType: 
+                  Type: int
+  3            Identifier: x
+  4         ReturnStmt: 
+  4            VarExpr: 
+  4               Identifier: x

@@ -1,0 +1,25 @@
+
+   Program: 
+  1   FnDecl: 
+         (return type) Type: void
+  1      Identifier: main
+         (body) StmtBlock: 
+  3         VarDecl: 
+               Type: int
+  3            Identifier: i
+  3            (initializer) IntConstant: 4
+            DoWhileStmt: 
+               (body) StmtBlock: 
+  6               VarDecl: 
+                     Type: int
+  6                  Identifier: x
+  7               ArithmeticExpr: 
+  7                  ArithmeticExpr: 
+  7                     VarExpr: 
+  7                        Identifier: i
+  7                     Operator: +
+  7                     IntConstant: 2
+  7                  Operator: +
+  7                  VarExpr: 
+  7                     Identifier: x
+  8            (test) FloatConstant: 5.4

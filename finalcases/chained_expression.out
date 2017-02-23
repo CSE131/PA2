@@ -1,0 +1,93 @@
+
+   Program: 
+  1   FnDecl: 
+         (return type) Type: void
+  1      Identifier: main
+         (body) StmtBlock: 
+  3         VarDecl: 
+               Type: bool
+  3            Identifier: b
+  3            (initializer) EqualityExpr: 
+  3               ArithmeticExpr: 
+  3                  ArithmeticExpr: 
+  3                     ArithmeticExpr: 
+  3                        VarExpr: 
+  3                           Identifier: i
+  3                        Operator: +
+  3                        IntConstant: 4
+  3                     Operator: /
+  3                     ArithmeticExpr: 
+  3                        VarExpr: 
+  3                           Identifier: k
+  3                        Operator: *
+  3                        IntConstant: 2
+  3                  Operator: -
+  3                  VarExpr: 
+  3                     Identifier: d
+  3               Operator: ==
+  3               ArithmeticExpr: 
+  3                  VarExpr: 
+  3                     Identifier: d
+  3                  Operator: *
+  3                  VarExpr: 
+  3                     Identifier: k
+  4         AssignExpr: 
+  4            VarExpr: 
+  4               Identifier: b
+  4            Operator: =
+  4            EqualityExpr: 
+  4               ArithmeticExpr: 
+  4                  ArithmeticExpr: 
+  4                     ArithmeticExpr: 
+  4                        VarExpr: 
+  4                           Identifier: i
+  4                        Operator: +
+  4                        IntConstant: 4
+  4                     Operator: /
+  4                     ArithmeticExpr: 
+  4                        VarExpr: 
+  4                           Identifier: k
+  4                        Operator: *
+  4                        IntConstant: 2
+  4                  Operator: -
+  4                  VarExpr: 
+  4                     Identifier: d
+  4               Operator: !=
+  4               ArithmeticExpr: 
+  4                  VarExpr: 
+  4                     Identifier: d
+  4                  Operator: *
+  4                  VarExpr: 
+  4                     Identifier: k
+  5         AssignExpr: 
+  5            VarExpr: 
+  5               Identifier: b
+  5            Operator: +=
+  5            RelationalExpr: 
+  5               ArithmeticExpr: 
+  5                  ArithmeticExpr: 
+  5                     ArithmeticExpr: 
+  5                        VarExpr: 
+  5                           Identifier: i
+  5                        Operator: +
+  5                        IntConstant: 4
+  5                     Operator: /
+  5                     ArithmeticExpr: 
+  5                        PostfixExpr: 
+  5                           VarExpr: 
+  5                              Identifier: k
+  5                           Operator: --
+  5                        Operator: *
+  5                        IntConstant: 2
+  5                  Operator: -
+  5                  VarExpr: 
+  5                     Identifier: d
+  5               Operator: >=
+  5               ArithmeticExpr: 
+  5                  ArithmeticExpr: 
+  5                     Operator: ++
+  5                     VarExpr: 
+  5                        Identifier: d
+  5                  Operator: *
+  5                  VarExpr: 
+  5                     Identifier: k

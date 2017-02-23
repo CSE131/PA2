@@ -1,0 +1,9 @@
+
+   Program: 
+  1   FnDecl: 
+         (return type) Type: int
+         (return type qualifier) TypeQualifier: const
+  1      Identifier: foo
+         (body) StmtBlock: 
+  2         ReturnStmt: 
+  2            IntConstant: 1
